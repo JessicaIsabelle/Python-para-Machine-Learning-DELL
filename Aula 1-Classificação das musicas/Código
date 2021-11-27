@@ -1,0 +1,27 @@
+#CÓDIGO PARA RESOLUÇÃO DE PROBLEMA DE ACORDO COM NOTAS DE MÚSICAS DOS OUVINTES DA SPOTIFY
+
+notas_rock = [5, 1, 4, 0, 2, 5, 2, 1, 0, 5, 5, 3, 5, 2, 5, 5, 3, 5, 4, 4]
+notas_pop = [3, 2, 5, 1, 2, 1, 4, 1, 5, 0, 4, 2, 1, 2, 5, 2, 4, 4, 0, 1]
+
+musicas_ruins_rock=len(list(filter(lambda x : x <=1, notas_rock)))
+musicas_medianas_rock=len(list(filter(lambda x : 2<=x <=3, notas_rock)))
+musicas_boas_rock=len(list(filter(lambda x : x >=4, notas_rock)))
+
+musicas_ruins_pop=len(list(filter(lambda x : x <=1, notas_pop)))
+musicas_medianas_pop=len(list(filter(lambda x : 2<=x <=3, notas_pop)))
+musicas_boas_pop=len(list(filter(lambda x : x >=4, notas_pop)))
+
+print(f' Pergunta 1 - O gênero Rock tem {musicas_ruins_rock} músicas ruins, {musicas_medianas_rock} músicas medianas e {musicas_boas_rock} músicas boas. E, o gênero Pop tem {musicas_ruins_pop} músicas ruins, {musicas_medianas_pop} músicas medianas e {musicas_boas_pop} músicas boas.')
+
+ha_musicas_medianas_rock=any(list(map(lambda x : 2<=x <=3, notas_rock)))
+print(f"Pergunta 2 - Existe alguma música mediana no Rock-{'sim' if (ha_musicas_medianas_rock) else 'não'}.")
+
+todas_musicas_boas_pop=all(list(map(lambda x : x >=4, notas_pop)))
+print(f"Pergunta 3 - Todas músicas Pop são boas -{'sim' if (todas_musicas_boas_pop) else 'não'}.")
+
+if musicas_boas_rock>musicas_boas_pop:
+    print(f'Pergunta 4 - O gênero Rock tem mais músicas boas que o Pop.')
+elif musicas_boas_pop>musicas_boas_rock:
+    print(f'Pergunta 4 - O gênero Pop tem mais músicas boas que o Rock.')
+else:
+    print(f'Pergunta 4 - Os dois gêneros Rock e Pop tem a mesma quantidade de músicas boas.')
