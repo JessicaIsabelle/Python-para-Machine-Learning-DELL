@@ -1,0 +1,42 @@
+print("   Jogo: Pedra, Papel e Tesoura     ")
+jogada = int(input("Escolha uma opção: 1-Pedra, 2-Papel, 3-Tesoura e 4-Sair"))
+print(f'Sua jogada -> {jogada}')
+lista_de_jogadas.append(jogada)
+
+def sugestao_jogada(lista_de_jogadas):
+    todas_jogadas = [lista_de_jogadas.count(1), lista_de_jogadas.count(2), lista_de_jogadas.count(3)]
+    opcao_mais_jogada = todas_jogadas.index(max(todas_jogadas)) + 1
+    if (opcao_mais_jogada == 1):
+        return 2
+    elif (opcao_mais_jogada == 2):
+        return 3
+    elif (opcao_mais_jogada == 3):
+        return 1
+
+import random
+if len(lista_de_jogadas) < 5 :
+    adversario = random.randint(1,3)
+else:
+    adversario = sugestao_jogada(lista_de_jogadas)
+    
+print(f'Jogada da máquina -> {adversario}')
+
+def resultado(jogada, adversario):
+    if jogada == adversario:
+        return "Você empatou com o adversario."
+    elif jogada == 4:
+        return "Finalizar programa."
+    elif (jogada == 1) and (adversario == 3):
+        return "Você ganhou!"
+    elif (jogada == 2) and (adversario == 1):
+        return "Você ganhou!"
+    elif (jogada == 3) and (adversario == 2):
+        return "Você ganhou!"
+    else:
+        return "Você perdeu!"
+    
+    
+print(f'{resultado(jogada, adversario)}')
+
+
+print(lista_de_jogadas)
