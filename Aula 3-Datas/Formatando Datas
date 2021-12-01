@@ -1,0 +1,26 @@
+import locale
+locale.setlocale(locale.LC_ALL, "Portuguese_Brazil.1252")
+
+from datetime import date, datetime
+
+
+aniversarios = ['01/02/1990', '22 de Maio de 1991', '04/Abr/1995', '1995-Outubro-10', '12 Julho 1989', '16 de Junho de 1987', '04/07/1990']
+
+def converte_para_data(aniversarios):
+    formatos_datas = ['%d/%m/%Y', '%d de %B de %Y', '%d/%b/%Y', '%Y-%B-%d', '%d %B %Y']
+    for formato_data in formatos_datas:
+        try:
+            valor_data = datetime.strptime(aniversarios, formato_data).date()
+            return valor_data
+        except ValueError:
+            pass
+
+lista_datas = list(map(converte_para_data, aniversarios))
+
+hoje=date.today()
+
+for lista_data in sorted(lista_datas, key=lambda d: (d.month, d.day)):
+    if (lista_data.strftime("%d/%m") == hoje.strftime("%d/%m")):
+        print(hoje.strftime("Hoje, %A %d de %B de %Y, tem aniversário!"))    
+    else:
+        print(lista_data.strftime("%d/%m"))
